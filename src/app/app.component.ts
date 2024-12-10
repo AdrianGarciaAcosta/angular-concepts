@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-concepts';
+
+  nameTemplateData = 'Adrian';
+
+  reactiveForm = this.formBuilder.group({
+    nameReactiveData: ['Antonio', Validators.required]
+  });
+
+  constructor(private formBuilder: FormBuilder) { }
+ 
+  templateSave(): void {
+    alert(this.nameTemplateData);
+  }
+  
+  reactiveSave(): void {
+    alert(this.reactiveForm.controls.nameReactiveData.value);
+  }
+
 }
