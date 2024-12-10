@@ -9,12 +9,12 @@
 
                     <label>Nombre</label>
                     <input type="text" class="form-control" id="nameTemplate" name="nameTemplate"
-                        [(ngModel)]="nameTemplateData">
+                        [(ngModel)]="nameTemplateData" [ngClass]="{'error': nameTemplateData === ''}">
 
-                    <p *ngIf="nameTemplateData.length === 0">Campo obligatorio</p>
+                    <p style="color: red" *ngIf="nameTemplateData === ''">Campo obligatorio</p>
 
                     <button type="submit" class="btn btn-primary mt-2"
-                        [disabled]="nameTemplateData.length === 0">Guardar</button>
+                        [disabled]="nameTemplateData === ''">Guardar</button>
 
                     <hr>
                     <hr>
@@ -38,17 +38,29 @@
 
                     <label>Nombre</label>
                     <input type="text" class="form-control" id="nameReactive" name="nameReactive"
-                        formControlName="nameReactiveData">
+                        formControlName="nameReactiveData"
+                        [ngClass]="{'error': reactiveForm.controls.nameReactiveData.dirty && reactiveForm.controls.nameReactiveData.invalid}">
+
+                    <p style="color: red"
+                        *ngIf="reactiveForm.controls.nameReactiveData.dirty && reactiveForm.controls.nameReactiveData.invalid">
+                        Campo obligatorio
+                    </p>
 
                     <button type="submit" class="btn btn-primary mt-2" [disabled]="!reactiveForm.valid">Guardar</button>
 
                     <hr>
                     <hr>
 
-                    <p>Nombre: {{reactiveForm.controls.nameReactiveData.value}}
-                    <p>
-                    <p>Estado formulario: {{reactiveForm.valid}}
+                    Nombre: {{reactiveForm.controls.nameReactiveData.value}}
                     <p></p>
+                    Estado formulario: {{reactiveForm.valid}}
+                    <p></p>
+                    Status input: {{reactiveForm.controls.nameReactiveData.status}}
+                    <p></p>
+                    Errors input: {{reactiveForm.controls.nameReactiveData.errors | json}}
+                    Error input: {{reactiveForm.controls.nameReactiveData.getError('required')}}
+                    <p></p>
+                    Invalid input: {{reactiveForm.controls.nameReactiveData.invalid}}
 
                 </form>
             </div>

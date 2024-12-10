@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent {
 
-  nameTemplateData = 'Adrian';
+  nameTemplateData = '';
 
   reactiveForm = this.formBuilder.group({
-    nameReactiveData: ['Antonio', Validators.required]
+    nameReactiveData: ['', Validators.required]
   });
 
   constructor(private formBuilder: FormBuilder) { }
